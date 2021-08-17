@@ -1,4 +1,4 @@
-package com.lagou.rabbitmq.theme;
+package com.lagou.rabbitmq.pubsub;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
@@ -11,26 +11,22 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.TimeoutException;
 
-/**
- * @ClassName BeijingConsumer
- * @Description
- * @Author wb
- * @Date 2021/8/17 0017 下午 2:15
- */
-public class ShenZhenEmponlineConsumer {
+public class ThreeConsumer {
+
     public static void main(String[] args) throws IOException, TimeoutException, NoSuchAlgorithmException, KeyManagementException, URISyntaxException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setUri("amqp://guest:guest@nas.scz.pub:5672/%2f");
-        Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
-        //声明一个交换器
-        channel.exchangeDeclare("theme.te", BuiltinExchangeType.TOPIC, true, false, null);
-        //临时队列名称
+        final Connection connection = factory.newConnection();
+        final Channel channel = connection.createChannel();
         String queueName = channel.queueDeclare().getQueue();
-        channel.queueBind(queueName, "theme.te", LogArea.SHENZHEN.getDesc() + "."+LogBiz.EMP_ONLINE.getDesc()+".*", null);
+        System.out.println("生成临时队列的名字:" + queueName);
+        channel.exchangeDeclare("exchange.ec", BuiltinExchangeType.FANOUT,
+                true, false,
+                null);
+        channel.queueBind(queueName, "exchange.ec", "");
         channel.basicConsume(queueName, (consumerTag, message) -> {
-            System.out.println(new String(message.getBody(),"utf-8"));
-        }, consumerTag->{
+            System.out.println("two：" + new String(message.getBody(), "utf-8"));
+        }, consumerTag -> {
 
         });
     }

@@ -28,7 +28,7 @@ public class ShanghaiErrorConsumer {
         //临时队列名称
         String queueName = channel.queueDeclare().getQueue();
         //#匹配多个字符 *匹配单个字符
-        channel.queueBind(queueName, "theme.te", LogArea.SHANGHAI.getDesc() + ".#", null);
+        channel.queueBind(queueName, "theme.te", LogArea.SHANGHAI.getDesc() + ".*."+LogLevel.ERROR.getDesc(), null);
         channel.basicConsume(queueName, (consumerTag, message) -> {
             System.out.println(new String(message.getBody(),"utf-8"));
         }, consumerTag->{

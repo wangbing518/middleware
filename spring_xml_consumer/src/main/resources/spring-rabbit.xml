@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/rabbit
+       http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <rabbit:connection-factory id="connectionFactory"
+                               host="nas.scz.pub"
+                               port="5672"
+                               virtual-host="/"
+                               username="guest"
+                               password="guest"/>
+    <!--用于自动向RabbitMQ声明对了，交换器，绑定等操作工具类-->
+    <rabbit:admin id="rabbitAdmin" connection-factory="connectionFactory"/>
+    <!--用于简化模板的操作类-->
+    <rabbit:template id="rabbitTemplate" connection-factory="connectionFactory"/>
+    <!--声明一个队列-->
+    <rabbit:queue id="q1" name="queue.q1" durable="true" exclusive="false" auto-delete="false"/>
+
+</beans>
