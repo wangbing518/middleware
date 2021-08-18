@@ -13,6 +13,8 @@
         <module>srping_rabbit_xml</module>
         <module>spring_xml_consumer</module>
         <module>spring_rabbit_xml_listener</module>
+        <module>spring_rabbit_anno</module>
+        <module>spring_rabbit_consumer_anno</module>
     </modules>
 
     <dependencyManagement>
