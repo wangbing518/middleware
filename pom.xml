@@ -15,6 +15,7 @@
         <module>spring_rabbit_xml_listener</module>
         <module>spring_rabbit_anno</module>
         <module>spring_rabbit_consumer_anno</module>
+        <module>spring_rabbit_anno_listener</module>
     </modules>
 
     <dependencyManagement>

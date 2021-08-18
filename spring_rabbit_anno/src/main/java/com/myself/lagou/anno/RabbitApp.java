@@ -25,9 +25,11 @@ public class RabbitApp {
         MessageProperties messageProperties = MessagePropertiesBuilder.newInstance().setContentType(MessageProperties.CONTENT_TYPE_TEXT_PLAIN)
                 .setContentEncoding("utf-8")
                 .setHeader("nihao", "shijie").build();
-        Message message= MessageBuilder.withBody("注解的中间件".getBytes("utf-8"))
-                .andProperties(messageProperties).build();
-        template.send("ex.anno.f","key.anno",message);
+        for (int i=1;i<=1000;i++){
+            Message message= MessageBuilder.withBody(("注解的中间件:"+i).getBytes("utf-8"))
+                    .andProperties(messageProperties).build();
+            template.send("ex.anno.f","key.anno",message);
+        }
         context.close();
     }
 }
