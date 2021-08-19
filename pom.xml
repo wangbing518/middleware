@@ -17,6 +17,7 @@
         <module>spring_rabbit_consumer_anno</module>
         <module>spring_rabbit_anno_listener</module>
         <module>spring_rabbit_asck</module>
+        <module>spring_rabbit_cousmer_ack</module>
     </modules>
 
     <dependencyManagement>

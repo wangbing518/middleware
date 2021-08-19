@@ -9,7 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring_rabbit_asck</artifactId>
+    <artifactId>spring_rabbit_cousmer_ack</artifactId>
+
     <build>
         <plugins>
             <plugin>
@@ -47,5 +48,4 @@
             <version>5.9.0</version>
         </dependency>
     </dependencies>
-
 </project>
