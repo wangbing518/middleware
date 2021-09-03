@@ -18,6 +18,7 @@
         <module>spring_rabbit_anno_listener</module>
         <module>spring_rabbit_asck</module>
         <module>spring_rabbit_cousmer_ack</module>
+        <module>spring-rabbit-dlx</module>
     </modules>
 
     <dependencyManagement>
